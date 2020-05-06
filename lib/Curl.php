@@ -5,6 +5,10 @@ declare(strict_types=1);
 class Curl
 {
 
+    /**
+     * По идее, если это curl, то формат запроса нужно требовать присылать в параметрах урла
+     * Но для имитации определяем сами.
+     */
     public function request(string $data): string
     {
         if (stripos($data, 'xml') === 2) {
@@ -50,7 +54,10 @@ class Curl
         } elseif ($int < 60) {
             return json_encode(['SubmitDataResult' => 'reject']);
         } else {
-            return json_encode(['SubmitDataResult' => 'error', 'SubmitDataErrorMessage' => 'Lead not Found']);
+            return json_encode([
+                'SubmitDataResult' => 'error',
+                'SubmitDataErrorMessage' => 'Lead not Found'
+            ]);
         }
     }
 
